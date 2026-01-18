@@ -1,0 +1,17 @@
+.img-logo img {
+  height: 40px;
+  width: auto;
+}
+
+.img-footer img {
+  height: 25px;
+  width: auto;
+  margin-left: 10px;
+}
+
+header .sticky-top {
+  position: sticky !important;
+  top: 0;
+  z-index: 1020;
+  background-color: white;
+}
