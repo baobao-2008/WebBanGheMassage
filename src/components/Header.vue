@@ -84,7 +84,6 @@
                 </div>
 
                 <div
-                  v-if="user"
                   @click="handleLogout"
                   title="Nhấn để đăng xuất"
                   style="cursor: pointer"
@@ -118,18 +117,31 @@ export default {
     },
   },
   mounted() {
-    // Kiểm tra người dùng có trong LocalStorage không
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      this.user = JSON.parse(savedUser);
-    }
+    this.loadUser();
+    // Thêm sự kiện lắng nghe khi localStorage thay đổi
+    window.addEventListener("storage", this.loadUser);
+    //Thêm custom event để component tự reload
+    window.addEventListener("user-login", this.loadUser);
+  },
+  beforeUnmount() {
+    window.removeEventListener("storage", this.loadUser);
+    window.removeEventListener("user-login", this.loadUser);
   },
   methods: {
+    loadUser() {
+      const savedUser = localStorage.getItem("user");
+      if (savedUser) {
+        this.user = JSON.parse(savedUser);
+      } else {
+        this.user = null;
+      }
+    },
     goToLogin() {
       this.$router.push("/login");
     },
     goToCRUD() {
       alert("Chuyển đến trang quản lý CRUD");
+      this.$router.push("/admin");
     },
     handleLogout() {
       if (confirm("Bạn có muốn đăng xuất không?")) {

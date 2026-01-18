@@ -55,8 +55,12 @@ export default {
         if (user) {
           // Lưu thông tin người dùng vào LocalStorage để ghi nhớ phiên đăng nhập
           localStorage.setItem("user", JSON.stringify(user));
+          window.dispatchEvent(new Event("user-login"));
           alert(`Chào mừng ${user.hoTen}`);
-          this.$router.push("/"); //Chuyển về trang chủ
+          //reload về trang chủ
+          this.$router.push("/").then(() => {
+            window.location.reload();
+          });
         } else {
           alert("Tài khoản hoặc mật khẩu không đúng!");
         }
