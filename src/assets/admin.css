@@ -1,0 +1,61 @@
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.table tbody td img {
+  transition: trasform 0.2s ease;
+}
+
+.table tbody td img:hover {
+  transform: scale(1.05);
+}
+
+.modal-header {
+  border-bottom: 2px solid #dee2e6;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.form-control:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}
+
+.preview-image {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  transition: transform 0.3s ease;
+}
+
+.preview-image:hover {
+  transform: scale(1.1);
+}
+
+.product-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Reposive */
+@media (max-width: 768px) {
+  .table tbody td img {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .preview-image {
+    max-width: 150px;
+    max-height: 150px;
+  }
+}
