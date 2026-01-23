@@ -1,0 +1,183 @@
+{
+  "SanPham": [
+    {
+      "tenSP": "Ghế Massage Poongsan Luxury A1",
+      "gia": 45000000,
+      "soLuong": 10,
+      "hinhAnh": "ghe_massage_2-1768922506276-558747998.webp",
+      "id": "1"
+    },
+    {
+      "tenSP": "Ghế Massage Poongsan MCP-200",
+      "gia": 32000000,
+      "soLuong": 5,
+      "hinhAnh": "ghe_massage_3-1768922518206-767606787.webp",
+      "id": "2"
+    },
+    {
+      "tenSP": "Ghế Massage Trị Liệu PS-300",
+      "gia": 55000000,
+      "soLuong": 8,
+      "hinhAnh": "ghe_massage_3-1768922526972-179220724.webp",
+      "id": "3"
+    },
+    {
+      "id": "4",
+      "tenSP": "Ghế Massage Toàn Thân Gen 4",
+      "gia": 62000000,
+      "hinhAnh": "/Image_ASS/ghe-massage_4.png",
+      "soLuong": 12
+    },
+    {
+      "tenSP": "Ghế Massage Thông Minh AI-500",
+      "gia": 75000000,
+      "soLuong": 4,
+      "hinhAnh": "ghe_massage_5-1768922538047-83127139.jpg",
+      "id": "5"
+    },
+    {
+      "id": "6",
+      "tenSP": "Ghế Massage Thư Giãn Pro-6",
+      "gia": 28000000,
+      "hinhAnh": "/Image_ASS/ghe-massage_6.png",
+      "soLuong": 15
+    },
+    {
+      "tenSP": "Ghế Massage Cao Cấp Royal-7",
+      "gia": 95000000,
+      "soLuong": 9,
+      "hinhAnh": "ghe_massage_6-1768922549203-448518549.webp",
+      "id": "7"
+    },
+    {
+      "id": "8",
+      "tenSP": "Ghế Massage Văn Phòng M8",
+      "gia": 18000000,
+      "hinhAnh": "/Image_ASS/ghe-massage_8.png",
+      "soLuong": 20
+    },
+    {
+      "id": "9",
+      "tenSP": "Ghế Massage Đa Năng S9",
+      "gia": 42000000,
+      "hinhAnh": "/Image_ASS/ghe-massage_9.png",
+      "soLuong": 7
+    },
+    {
+      "tenSP": "Ghế Massage được sản xuất tại Việt Nam",
+      "gia": 16990000,
+      "soLuong": 25,
+      "hinhAnh": "ghe_massage_7-1768922558117-987022830.webp",
+      "id": "6c18"
+    },
+    {
+      "tenSP": "rhghtrg",
+      "gia": 343465,
+      "soLuong": 32,
+      "hinhAnh": "ghe_massage_5-1769145143397-960983515.jpg",
+      "id": "4031"
+    }
+  ],
+  "NguoiDung": [
+    {
+      "id": "1",
+      "taiKhoan": "admin",
+      "matKhau": "123",
+      "hoTen": "Văn Nguyễn Quốc Bảo",
+      "soDienThoai": "0964250706",
+      "email": "admin@company.com",
+      "vaiTro": "admin"
+    },
+    {
+      "id": "3",
+      "taiKhoan": "khachhang1",
+      "matKhau": "123",
+      "hoTen": "Nguyễn Quốc Bảo",
+      "soDienThoai": "0912345678",
+      "email": "khachhang@gmail.com",
+      "vaiTro": "khachhang"
+    },
+    {
+      "id": "7432",
+      "taiKhoan": "baobao123",
+      "matKhau": "baobao123@",
+      "hoTen": "Văn Nguyễn Quốc Bảo",
+      "soDienThoai": "0964250706",
+      "email": "",
+      "vaiTro": "khachhang"
+    },
+    {
+      "id": "3387",
+      "taiKhoan": "Binh",
+      "matKhau": "Binh123",
+      "hoTen": "Đỗ An Bình",
+      "soDienThoai": "0964250706",
+      "email": "Binh123@gmail.co",
+      "vaiTro": "khachhang"
+    },
+    {
+      "id": "a4ec",
+      "taiKhoan": "Binhh",
+      "matKhau": "Binh123",
+      "hoTen": "Đỗ An Bình",
+      "soDienThoai": "0964250706",
+      "email": "Binhda06811@gmail.com",
+      "vaiTro": "nhanvien"
+    },
+    {
+      "id": "f9dd",
+      "taiKhoan": "Minh",
+      "matKhau": "Minh123",
+      "hoTen": "Phạm Công Minh",
+      "soDienThoai": "0987548374",
+      "email": "Minh33@gmail.com",
+      "vaiTro": "nhanvien"
+    }
+  ],
+  "KhachHang": [
+    {
+      "id": "1",
+      "hoTen": "Trần Thị B",
+      "soDienThoai": "0912345678",
+      "diaChi": "123 Nguyễn Văn Linh, Quận 7, TP.HCM",
+      "email": "tranthib@gmail.com"
+    },
+    {
+      "id": "2",
+      "hoTen": "Lê Văn C",
+      "soDienThoai": "0909876543",
+      "diaChi": "456 Lê Lợi, Quận 1, TP.HCM",
+      "email": "levanc@gmail.com"
+    },
+    {
+      "id": "9cc2",
+      "hoTen": "Văn Nguyễn Quốc Bảo",
+      "soDienThoai": "0964250706",
+      "email": "",
+      "diaChi": ""
+    },
+    {
+      "id": "e634",
+      "hoTen": "Đỗ An Bình",
+      "soDienThoai": "0964250706",
+      "email": "Binh123@gmail.co",
+      "diaChi": ""
+    }
+  ],
+  "NhanVien": [
+    {
+      "id": "7de1",
+      "hoTen": "Đỗ An Bình",
+      "soDienThoai": "0964250706",
+      "email": "Binhda06811@gmail.com",
+      "chucVu": "Nhân viên bán hàng"
+    },
+    {
+      "id": "fb02",
+      "hoTen": "Phạm Công Minh",
+      "soDienThoai": "0987548374",
+      "email": "Minh33@gmail.com",
+      "chucVu": "Chăm sóc khách hàng"
+    }
+  ]
+}

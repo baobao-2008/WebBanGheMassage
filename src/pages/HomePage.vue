@@ -9,30 +9,33 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img
-              src="https://media.poongsankorea.vn/media/brands/thang-1/138/Anh-ngang-1900x-500.png"
-              class="d-block w-100"
+              :src="require('@/assets/images/banners/Banner_1.png')"
               alt="..."
+              style="height: 500px; object-fit: cover"
             />
           </div>
           <div class="carousel-item">
             <img
-              src="https://media.poongsankorea.vn/media/brands/thang-1/138/adapt-website-1900x500_1.jpg"
+              :src="require('@/assets/images/banners/Banner_2.jpg')"
               class="d-block w-100"
               alt="..."
+              style="height: 500px; object-fit: cover"
             />
           </div>
           <div class="carousel-item">
             <img
-              src="https://media.poongsankorea.vn/media/tin-tuc/z6525909653730_be9667e079b377898af0fc8085d55fb5.jpg"
+              :src="require('@/assets/images/banners/Banner_3.jpg')"
               class="d-block w-100"
               alt="..."
+              style="height: 500px; object-fit: cover"
             />
           </div>
           <div class="carousel-item">
             <img
-              src="https://media.poongsankorea.vn/media/brands/thang-1/138/Anh-ngang-1900x-500.png"
+              :src="require('@/assets/images/banners/Banner_1.png')"
               class="d-block w-100"
               alt="..."
+              style="height: 500px; object-fit: cover"
             />
           </div>
         </div>
@@ -76,7 +79,7 @@
           <div class="d-flex gap-3 pt-3">
             <div class="d-flex gap-2">
               <i class="bi bi-grid"></i>
-              <p>2 sản phẩm</p>
+              <p>{{ listSP.length }} sản phẩm</p>
             </div>
             <div>
               <input type="checkbox" class="form-check-input" />
@@ -148,7 +151,7 @@ export default {
   methods: {
     getProducts() {
       axios
-        .get("https://696c9009f4a79b31517f4795.mockapi.io/api/v1/SanPham")
+        .get("http://localhost:3000/SanPham")
         .then((response) => {
           this.listSP = response.data; // Gán dữ liệu trả về vào listSP
         })

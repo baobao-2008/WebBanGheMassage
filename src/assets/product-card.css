@@ -1,0 +1,26 @@
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.image-wrapper {
+  cursor: pointer;
+}
+
+.product-image {
+  transition: transform 0.3s ease;
+}
+
+.image-wrapper:hover .product-image {
+  transform: scale(1.05); /* Phóng to ảnh 5% khi hover */
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    margin-bottom: 20px;
+  }
+}

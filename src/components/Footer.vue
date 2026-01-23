@@ -4,10 +4,7 @@
       <div class="container">
         <div class="row align-items-center" style="min-height: 50px">
           <div class="col-auto img-logo">
-            <img
-              src="https://media.poongsankorea.vn/media/logo/logo.png"
-              alt="Logo"
-            />
+            <img :src="require('@/assets/images/logos/logo.png')" alt="Logo" />
           </div>
 
           <div class="col text-center">

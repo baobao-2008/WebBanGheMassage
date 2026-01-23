@@ -24,7 +24,8 @@ export default {
   },
   computed: {
     showLayout() {
-      return this.$route.path !== "/login";
+       const hiddenPages = ["/login", "/register"];
+      return !hiddenPages.includes(this.$route.path);
     },
   },
 };
