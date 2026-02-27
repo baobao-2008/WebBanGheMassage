@@ -34,8 +34,10 @@
     </div>
   </footer>
 </template>
-<script>
-export default {
-  name: "Footer",
-};
+
+<script setup>
 </script>
+
+<style>
+@import "@/assets/mainweb.css";
+</style>

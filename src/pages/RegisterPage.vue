@@ -86,103 +86,193 @@
   </div>
 </template>
 
-<script>
-import axios from "axios";
+<script setup>
+import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
 
-export default {
-  name: "RegisterPage",
-  data() {
-    return {
-      formData: {
-        hoTen: "",
-        taiKhoan: "",
-        matKhau: "",
-        soDienThoai: "",
-        email: "",
-        vaiTro: "khachhang",
-      },
+const router = useRouter();
+
+const formData = reactive({
+  hoTen: "",
+  taiKhoan: "",
+  matKhau: "",
+  soDienThoai: "",
+  email: "",
+  vaiTro: "khachhang",
+});
+
+const listNguoiDung = ref([
+  {
+    id: "1",
+    taiKhoan: "admin",
+    matKhau: "123",
+    hoTen: "Văn Nguyễn Quốc Bảo",
+    soDienThoai: "0964250706",
+    email: "admin@company.com",
+    vaiTro: "admin"
+  },
+  {
+    id: "3",
+    taiKhoan: "khachhang1",
+    matKhau: "123",
+    hoTen: "Nguyễn Quốc Bảo",
+    soDienThoai: "0912345678",
+    email: "khachhang@gmail.com",
+    vaiTro: "khachhang"
+  },
+  {
+    id: "7432",
+    taiKhoan: "baobao123",
+    matKhau: "baobao123@",
+    hoTen: "Văn Nguyễn Quốc Bảo",
+    soDienThoai: "0964250706",
+    email: "",
+    vaiTro: "khachhang"
+  },
+  {
+    id: "3387",
+    taiKhoan: "Binh",
+    matKhau: "Binh123",
+    hoTen: "Đỗ An Bình",
+    soDienThoai: "0964250706",
+    email: "Binh123@gmail.co",
+    vaiTro: "khachhang"
+  },
+  {
+    id: "a4ec",
+    taiKhoan: "Binhh",
+    matKhau: "Binh123",
+    hoTen: "Đỗ An Bình",
+    soDienThoai: "0964250706",
+    email: "Binhda06811@gmail.com",
+    vaiTro: "nhanvien"
+  },
+  {
+    id: "f9dd",
+    taiKhoan: "Minh",
+    matKhau: "Minh123",
+    hoTen: "Phạm Công Minh",
+    soDienThoai: "0987548374",
+    email: "Minh33@gmail.com",
+    vaiTro: "nhanvien"
+  },
+  {
+    id: "19c0",
+    taiKhoan: "rttt",
+    matKhau: "123456789",
+    hoTen: "grtg",
+    soDienThoai: "0846375633",
+    email: "rehjhjj@gmail.com",
+    vaiTro: "khachhang"
+  }
+]);
+
+const listKhachHang = ref([
+  {
+    id: "1",
+    hoTen: "Trần Thị B",
+    soDienThoai: "0912345678",
+    email: "tranthib@gmail.com",
+    diaChi: "123 Nguyễn Văn Linh, Quận 7, TP.HCM"
+  },
+  {
+    id: "2",
+    hoTen: "Lê Văn C",
+    soDienThoai: "0909876543",
+    email: "levanc@gmail.com",
+    diaChi: "456 Lê Lợi, Quận 1, TP.HCM"
+  },
+  {
+    id: "9cc2",
+    hoTen: "Văn Nguyễn Quốc Bảo",
+    soDienThoai: "0964250706",
+    email: "",
+    diaChi: ""
+  },
+  {
+    id: "e634",
+    hoTen: "Đỗ An Bình",
+    soDienThoai: "0964250706",
+    email: "Binh123@gmail.co",
+    diaChi: ""
+  },
+  {
+    id: "2965",
+    hoTen: "grtg",
+    soDienThoai: "0846375633",
+    email: "rehjhjj@gmail.com",
+    diaChi: ""
+  }
+]);
+
+function validateForm() {
+  if (formData.taiKhoan.length < 4) {
+    alert("Tên tài khoản phải có ít nhất 4 ký tự!");
+    return false;
+  }
+
+  if (formData.matKhau.length < 3) {
+    alert("Mật khẩu phải có ít nhất 3 ký tự!");
+    return false;
+  }
+
+  const phoneRegex = /^[0-9]{10}$/;
+  if (!phoneRegex.test(formData.soDienThoai)) {
+    alert("Số điện thoại phải có 10 chữ số!");
+    return false;
+  }
+  
+  return true;
+}
+
+function handleRegister() {
+  if (!validateForm()) {
+    return;
+  }
+
+  const existingUser = listNguoiDung.value.find(
+    (u) => u.taiKhoan === formData.taiKhoan
+  );
+
+  if (existingUser) {
+    alert("Tên tài khoản đã tồn tại! Vui lòng chọn tên khác.");
+    return;
+  }
+
+  // Tạo ID mới dạng hex 4 ký tự
+  const newUserId = Math.floor(Math.random() * 0x10000).toString(16).padStart(4, '0');
+  const newKhachHangId = Math.floor(Math.random() * 0x10000).toString(16).padStart(4, '0');
+
+  const newUser = {
+    id: newUserId,
+    taiKhoan: formData.taiKhoan,
+    matKhau: formData.matKhau,
+    hoTen: formData.hoTen,
+    soDienThoai: formData.soDienThoai,
+    email: formData.email || "",
+    vaiTro: formData.vaiTro,
+  };
+
+  listNguoiDung.value.push(newUser);
+
+  if (formData.vaiTro === "khachhang") {
+    const newKhachHang = {
+      id: newKhachHangId,
+      hoTen: formData.hoTen,
+      soDienThoai: formData.soDienThoai,
+      email: formData.email || "",
+      diaChi: "",
     };
-  },
+    
+    listKhachHang.value.push(newKhachHang);
+  }
 
-  methods: {
-    async handleRegister() {
-      try {
-        if (!this.validateForm()) {
-          return;
-        }
+  console.log("Đăng ký thành công: ", newUser);
+  alert("Đăng ký thành công!");
+  router.push("/login");
+}
 
-        //Kiểm tra xem tài khoản đã tồn tại chưa
-        const checkUser = await axios.get("http://localhost:3000/NguoiDung");
-        const existingUser = checkUser.data.find(
-          (u) => u.taiKhoan === this.formData.taiKhoan,
-        );
-
-        if (existingUser) {
-          alert("Tên tài khoản đã tồn tại! Vui lòng chọn tên khác. ");
-          this.isSubmitting = false;
-          return;
-        }
-
-        //Tạo tài khoản user mới
-        const newUser = {
-          taiKhoan: this.formData.taiKhoan,
-          matKhau: this.formData.matKhau,
-          hoTen: this.formData.hoTen,
-          soDienThoai: this.formData.soDienThoai,
-          email: this.formData.email || "",
-          vaiTro: this.formData.vaiTro,
-        };
-
-        const userReponse = await axios.post(
-          "http://localhost:3000/NguoiDung",
-          newUser,
-        );
-
-        //Nếu là khách hàng thì thêm vào bảng khách hàng
-        if (this.formData.vaiTro === "khachhang") {
-          await axios.post("http://localhost:3000/KhachHang", {
-            hoTen: this.formData.hoTen,
-            soDienThoai: this.formData.soDienThoai,
-            email: this.formData.email || "",
-            diaChi: "",
-          });
-        }
-
-        console.log("Đăng ký thành công: ", userReponse.data);
-        alert("Đăng ký thành công");
-
-        this.$router.push("/login");
-      } catch (error) {
-        console.error("Lỗi đăng ký:", error);
-        alert("Có lỗi khi đăng ký! Vui lòng thử lại.");
-      }
-    },
-
-    validateForm() {
-      // Kiểm tra độ dài tài khoản
-      if (this.formData.taiKhoan.length < 4) {
-        alert("Tên tài khoản phải có ít nhất 4 ký tự!");
-        return false;
-      }
-
-      // Kiểm tra độ dài mật khẩu
-      if (this.formData.matKhau.length < 3) {
-        alert("Mật khẩu phải có ít nhất 3 ký tự!");
-        return false;
-      }
-
-      //Kiểm tra số điện thoại
-      const phoneRegex = /^[0-9]{10}$/;
-      if (!phoneRegex.test(this.formData.soDienThoai)) {
-        alert("Số điện thoại phải có 10 chữ số!");
-        return false;
-      }
-
-    },
-
-    goToLogin() {
-      this.$router.push("/login");
-    },
-  },
-};
+function goToLogin() {
+  router.push("/login");
+}
 </script>

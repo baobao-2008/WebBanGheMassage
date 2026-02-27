@@ -4,7 +4,6 @@
       <img
         :src="getImagePath(product.hinhAnh)"
         class="card-img-top img-fluid product-image"
-        style="max-height: 280px; width: 100%; object-fit: contain"
         @error="handleImageError"
       />
     </div>
@@ -20,10 +19,8 @@
           class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center gap-2 py-2"
           @click="viewDetail"
         >
-          <i class="bi bi-eye"></i>
-          <span>Xem chi tiết</span>
+          <i class="bi bi-eye"></i><span>Xem chi tiết</span>
         </button>
-
         <button
           class="btn btn-danger w-100 d-flex align-items-center justify-content-center gap-2 py-2 border-0"
           @click.stop="addToCart"
@@ -34,58 +31,99 @@
     </div>
   </div>
 </template>
-<script>
-import "@/assets/product-card.css";
-export default {
-  name: "ProductCard",
 
-  props: {
-    product: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    formatPrice(value) {
-      return new Intl.NumberFormat("vi-VN").format(value);
-    },
+<script setup>
+import { useRouter } from "vue-router";
 
-    getImagePath(imageName) {
-      // Nếu đường dẫn bắt đầu bằng http/https thì dùng trực tiếp
-      if (imageName.startsWith('http')) {
-        return imageName;
-      }
-      
-      // Nếu đường dẫn bắt đầu bằng / thì là đường dẫn từ public
-      if (imageName.startsWith('/')) {
-        return imageName;
-      }
-      
-      // Nếu chỉ là tên file, thử tìm trong public/Image_ASS
-      try {
-        return `/Image_ASS/${imageName}`;
-      } catch (error) {
-        console.error('Không tìm thấy ảnh:', imageName);
-        return ''; // Ảnh placeholder nếu không tìm thấy
-      }
-    },
+const props = defineProps({ product: { type: Object, required: true } });
+const router = useRouter();
 
-    handleImageError(event) {
-      console.error('Lỗi load ảnh:', this.product.hinhAnh);
-      // Có thể set ảnh placeholder
-      event.target.src = 'https://via.placeholder.com/280x280?text=No+Image';
-    },
+function formatPrice(value) {
+  return new Intl.NumberFormat("vi-VN").format(value);
+}
 
-    viewDetail() {
-      this.$router.push({
-        name: "ProductDetail",
-        params: { id: this.product.id },
-      });
-    },
+function getImagePath(imageName) {
+  if (imageName.startsWith("http") || imageName.startsWith("/"))
+    return imageName;
+  return `/Image_ASS/${imageName}`;
+}
 
-    addToCart() {
-      alert(`Đã thêm "${this.product.tenSP}" vào giỏ hàng!`);
-    },
-  },
-};
+function handleImageError(event) {
+  event.target.src = "https://via.placeholder.com/400x400?text=No+Image";
+}
+
+function viewDetail() {
+  router.push({ name: "ProductDetail", params: { id: props.product.id } });
+}
+
+function addToCart() {
+  let cart = localStorage.getItem("cart");
+  let cartItems = cart ? JSON.parse(cart) : [];
+  const existingItem = cartItems.find((item) => item.id === props.product.id);
+
+  if (existingItem) {
+    if (existingItem.quantity < props.product.soLuong) {
+      existingItem.quantity++;
+      alert(
+        `Đã tăng số lượng "${props.product.tenSP}" lên ${existingItem.quantity}`,
+      );
+    } else {
+      alert(
+        `Đã đạt số lượng tối đa (${props.product.soLuong}) cho sản phẩm này!`,
+      );
+      return;
+    }
+  } else {
+    cartItems.push({
+      id: props.product.id,
+      tenSP: props.product.tenSP,
+      gia: props.product.gia,
+      hinhAnh: props.product.hinhAnh,
+      soLuong: props.product.soLuong,
+      quantity: 1,
+    });
+    alert(`Đã thêm "${props.product.tenSP}" vào giỏ hàng!`);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cartItems));
+  window.dispatchEvent(new Event("cart-updated"));
+}
 </script>
+
+<style scoped>
+.product-image {
+  max-height: 400px !important;
+  min-height: 350px;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+.image-wrapper {
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #f8f9fa, #fff);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.image-wrapper:hover .product-image {
+  transform: scale(1.05);
+}
+.product-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .product-image {
+    max-height: 280px !important;
+    min-height: 250px;
+  }
+  .image-wrapper {
+    min-height: 280px;
+  }
+}
+</style>

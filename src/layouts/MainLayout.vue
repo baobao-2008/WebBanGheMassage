@@ -10,31 +10,23 @@
   </div>
 </template>
 
-<script>
-// Import các thành phần vào để sử dụng
+<script setup>
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
-import { computed } from "vue";
 
-export default {
-  name: "MainLayout",
-  components: {
-    Header,
-    Footer,
-  },
-  computed: {
-    showLayout() {
-       const hiddenPages = ["/login", "/register"];
-      return !hiddenPages.includes(this.$route.path);
-    },
-  },
-};
+const route = useRoute();
+
+const showLayout = computed(() => {
+  const hiddenPages = ["/login", "/register","/admin","/pos","/custorner","/staff","/bill"];
+  return !hiddenPages.includes(route.path);
+});
 </script>
 
 <style scoped>
-/* Bạn có thể thêm các định dạng chung cho Layout tại đây */
 .content-wrapper {
-  min-height: 80vh; /* Đảm bảo nội dung luôn chiếm không gian đủ lớn */
+  min-height: 80vh;
   padding-top: 20px;
 }
 </style>

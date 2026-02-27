@@ -7,6 +7,8 @@ import ProductDetailPage from "@/pages/ProductDetailPage.vue";
 import AdminBillPage from "@/pages/AdminBillPage.vue";
 import AdminStaffPage from "@/pages/AdminStaffPage.vue";
 import AdminCustornerPage from "@/pages/AdminCustornerPage.vue";
+import CartPage from "@/pages/CartPage.vue";
+import AdminPOSPage from "@/pages/Adminpospage.vue";
 
 const routes = [
   { path: "/login", component: LoginPage },
@@ -17,6 +19,8 @@ const routes = [
   { path: "/bill", component: AdminBillPage },
   { path: "/staff", component: AdminStaffPage },
   { path: "/custorner", component: AdminCustornerPage },
+  { path: "/cart", component: CartPage },
+  { path: "/pos", component: AdminPOSPage },
 ];
 
 const router = createRouter({

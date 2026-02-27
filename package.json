@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "json-server": "json-server --watch db.json --port 3000",
     "upload-server": "node server.js",
-    "dev": "concurrently \"npm run serve\" \"npm run json-server\" \"npm run upload-server\""
+    "dev": "concurrently \"npm run serve\" \"npm run json-server\" \"npm run upload-server\"",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^1.13.2",

@@ -1,6 +1,8 @@
+
 .img-logo img {
   height: 40px;
   width: auto;
+  cursor: pointer;
 }
 
 .img-footer img {
@@ -9,9 +11,26 @@
   margin-left: 10px;
 }
 
-header .sticky-top {
-  position: sticky !important;
-  top: 0;
-  z-index: 1020;
-  background-color: white;
+.hover-link a {
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.hover-link a:hover {
+  color: #dc3545 !important;
+}
+
+header i {
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+header i:hover {
+  color: #dc3545 !important;
+  transform: scale(1.1);
+}
+
+.hover-mobile:hover {
+  background-color: #f8f9fa;
+  color: #dc3545 !important;
 }

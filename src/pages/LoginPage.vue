@@ -31,7 +31,6 @@
             <span>Đăng nhập</span>
           </button>
 
-          <!-- Link đăng ký -->
           <div class="text-center">
             <span>Chưa có tài khoản? </span>
             <a
@@ -48,51 +47,106 @@
   </div>
 </template>
 
-<script>
-import axios from "axios";
+<script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-export default {
-  data() {
-    return {
-      taiKhoan: "",
-      matKhau: "",
-    };
+const router = useRouter();
+
+const taiKhoan = ref("");
+const matKhau = ref("");
+
+const listNguoiDung = ref([
+  {
+    id: "1",
+    taiKhoan: "admin",
+    matKhau: "123",
+    hoTen: "Văn Nguyễn Quốc Bảo",
+    soDienThoai: "0964250706",
+    email: "admin@company.com",
+    vaiTro: "admin"
   },
-  methods: {
-    async handleLogin() {
-      try {
-        const res = await axios.get("http://localhost:3000/NguoiDung");
-        const users = res.data;
-
-        //Kiểm tra tài khoản và mật khẩu
-        const user = users.find(
-          (u) => u.taiKhoan === this.taiKhoan && u.matKhau === this.matKhau,
-        );
-
-        if (user) {
-          // Lưu thông tin người dùng vào LocalStorage để ghi nhớ phiên đăng nhập
-          localStorage.setItem("user", JSON.stringify(user));
-          window.dispatchEvent(new Event("user-login"));
-          alert(`Chào mừng ${user.hoTen}`);
-          //reload về trang chủ
-          if (user.vaiTro === "admin") {
-            this.$router.push("/admin");
-          } else {
-            this.$router.push("/");
-          }
-          setTimeout(() => {
-            window.location.reload();
-          }, 100);
-        } else {
-          alert("Tài khoản hoặc mật khẩu không đúng!");
-        }
-      } catch (error) {
-        console.error("Lỗi đăng nhập: ", error);
-      }
-    },
-    goToRegister() {
-      this.$router.push("/register");
-    },
+  {
+    id: "2",
+    taiKhoan: "khachhang1",
+    matKhau: "123",
+    hoTen: "Nguyễn Quốc Bảo",
+    soDienThoai: "0912345678",
+    email: "khachhang@gmail.com",
+    vaiTro: "khachhang"
   },
-};
+  {
+    id: "3",
+    taiKhoan: "baobao123",
+    matKhau: "baobao123@",
+    hoTen: "Văn Nguyễn Quốc Bảo",
+    soDienThoai: "0964250706",
+    email: "",
+    vaiTro: "khachhang"
+  },
+  {
+    id: "4",
+    taiKhoan: "Binh",
+    matKhau: "Binh123",
+    hoTen: "Đỗ An Bình",
+    soDienThoai: "0964250706",
+    email: "Binh123@gmail.co",
+    vaiTro: "khachhang"
+  },
+  {
+    id: "5",
+    taiKhoan: "Binhh",
+    matKhau: "Binh123",
+    hoTen: "Đỗ An Bình",
+    soDienThoai: "0964250706",
+    email: "Binhda06811@gmail.com",
+    vaiTro: "nhanvien"
+  },
+  {
+    id: "6",
+    taiKhoan: "Minh",
+    matKhau: "Minh123",
+    hoTen: "Phạm Công Minh",
+    soDienThoai: "0987548374",
+    email: "Minh33@gmail.com",
+    vaiTro: "nhanvien"
+  },
+  {
+    id: "7",
+    taiKhoan: "rttt",
+    matKhau: "123456789",
+    hoTen: "grtg",
+    soDienThoai: "0846375633",
+    email: "rehjhjj@gmail.com",
+    vaiTro: "khachhang"
+  }
+]);
+
+function handleLogin() {
+  const user = listNguoiDung.value.find(
+    (u) => u.taiKhoan === taiKhoan.value && u.matKhau === matKhau.value
+  );
+
+  if (user) {
+    localStorage.setItem("user", JSON.stringify(user));
+    window.dispatchEvent(new Event("user-login"));
+    alert(`Chào mừng ${user.hoTen}`);
+    
+    if (user.vaiTro === "admin") {
+      router.push("/admin");
+    } else {
+      router.push("/");
+    }
+    
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  } else {
+    alert("Tài khoản hoặc mật khẩu không đúng!");
+  }
+}
+
+function goToRegister() {
+  router.push("/register");
+}
 </script>
